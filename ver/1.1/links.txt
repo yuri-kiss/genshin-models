@@ -1,0 +1,10 @@
+reference: http://ys.biligame.com/pjdkx/
+Xinyan: http://i0.hdslb.com/bfs/game-static/ed47b4dc6937c8c811b71c8994d03676ab643772.zip
+Zhongli: http://i0.hdslb.com/bfs/game-static/faea333788928361bda57df3b4a63f617cd2cac0.zip
+Keqing: http://i0.hdslb.com/bfs/game-static/ae65c36ad6542666d770688734a4a030fb6212a8.zip
+Klee: http://i0.hdslb.com/bfs/game-static/4e663d821c6a7f4198bcd4f351447e7cee2fa004.zip
+Qiqi: http://i0.hdslb.com/bfs/game-static/7210c615ff78b2f1a049359454c60bc6a9a80039.zip
+Mona: http://i0.hdslb.com/bfs/game-static/938eb4c1636c0f585a8e0c30cb3304d367901c33.zip
+Diona: http://i0.hdslb.com/bfs/game-static/80bbc4773b2abe7b4d5a5c22eb42c2cdf1b8a33e.zip
+Unusual Hilichurl: http://i0.hdslb.com/bfs/game-static/9646b68a4271729954d57011a9fc69a6e08d0503.zip
+Tartaglia [Childe]: http://i0.hdslb.com/bfs/game-static/235a0e7366822257f0d97d3bb5f091d22862c444.zip

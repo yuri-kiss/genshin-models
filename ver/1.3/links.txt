@@ -1,0 +1,12 @@
+reference: https://ys.biligame.com/ysl/
+Hu Tao: https://i0.hdslb.com/bfs/game-static/7d69ffe6d7cef7239bfe6b7680c9977aa25a39f5.zip
+Xingqiu: https://s1.hdslb.com/bfs/game-static/web/caster/static/script/vue/36d86a726173d2d4840e98a18e87fb08/10.zip
+Xinyan: https://s1.hdslb.com/bfs/game-static/web/caster/static/script/vue/bb47ea824e166b4098ce4d4190f90484/9.zip
+Xiangling: https://s1.hdslb.com/bfs/game-static/web/caster/static/script/vue/c127fd4d6f8acbce3a963d093c5d897b/8.zip
+Zhongli: https://s1.hdslb.com/bfs/game-static/web/caster/static/script/vue/917952afd805ac7b37b05bc65f3d4887/7.zip
+Keqing: https://s1.hdslb.com/bfs/game-static/web/caster/static/script/vue/329372278d828347fcab9f4d88572dcd/6.zip
+Qiqi: https://s1.hdslb.com/bfs/game-static/web/caster/static/script/vue/3e53143353f11f3ae20e344b13fc4d94/5.zip
+Ganyu: https://s1.hdslb.com/bfs/game-static/web/caster/static/script/vue/85c12ca3cbb4da2c72d5142f8ef95ccf/4.zip
+Ningguang: https://s1.hdslb.com/bfs/game-static/web/caster/static/script/vue/515df26b990d2e67697c1e952bb3491d/3.zip
+Chongyun: https://s1.hdslb.com/bfs/game-static/web/caster/static/script/vue/fe8eadef4e134e8d337c667727e15e29/2.zip
+Xiao: https://s1.hdslb.com/bfs/game-static/web/caster/static/script/vue/85ad0a56a99f29a85f0040443878b7a5/1.zip

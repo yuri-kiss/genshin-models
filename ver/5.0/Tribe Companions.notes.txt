@@ -1,0 +1,1 @@
+textures not set so show up as white

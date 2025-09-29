@@ -1,0 +1,17 @@
+reference: https://www.bilibili.com/blackboard/era/iBNf7xbdgeEH1sEB.html
+Navia: https://activity.hdslb.com/blackboard/static/20240716/47cd746cc81b48cbb337ce6f1976bcab/FXBSlw8hu2.zip
+Yelan: https://activity.hdslb.com/blackboard/static/20240716/47cd746cc81b48cbb337ce6f1976bcab/t8No5fdfra.zip
+Lyney (alt event): https://activity.hdslb.com/blackboard/static/20240716/47cd746cc81b48cbb337ce6f1976bcab/Fb4zjJSXZW.zip
+Lynette (alt event): https://activity.hdslb.com/blackboard/static/20240716/47cd746cc81b48cbb337ce6f1976bcab/HyLH3cfL5Z.zip
+Nilou: https://activity.hdslb.com/blackboard/static/20240716/47cd746cc81b48cbb337ce6f1976bcab/gxcFXsEfk3.zip
+Nilou (alt): https://activity.hdslb.com/blackboard/static/20240716/47cd746cc81b48cbb337ce6f1976bcab/nf1w9CtbIx.zip
+Ningguang: https://activity.hdslb.com/blackboard/static/20240716/47cd746cc81b48cbb337ce6f1976bcab/G9ubwa0TQQ.zip
+Ningguang (alt): https://activity.hdslb.com/blackboard/static/20240716/47cd746cc81b48cbb337ce6f1976bcab/eIueaAV96k.zip
+Kirara: https://activity.hdslb.com/blackboard/static/20240716/47cd746cc81b48cbb337ce6f1976bcab/t6XFqd4WXO.zip
+Kirara (alt): https://activity.hdslb.com/blackboard/static/20240716/47cd746cc81b48cbb337ce6f1976bcab/WRGZbq8yiZ.zip
+Kaveh: https://activity.hdslb.com/blackboard/static/20240716/47cd746cc81b48cbb337ce6f1976bcab/NoRgeqmYLq.zip
+Emilie: https://activity.hdslb.com/blackboard/static/20240729/d32c2bb79f59192cb072d7bf79b61c6d/KvocV7rQbC.zip
+Razor: https://activity.hdslb.com/blackboard/static/20240806/d32c2bb79f59192cb072d7bf79b61c6d/S2hP4ZYKWH.zip
+Xiangling: https://activity.hdslb.com/blackboard/static/20240806/d32c2bb79f59192cb072d7bf79b61c6d/TMJLa0R9Nb.zip
+Yanfei: https://activity.hdslb.com/blackboard/static/20240806/d32c2bb79f59192cb072d7bf79b61c6d/zFA3K3yyjc.zip
+background: https://i0.hdslb.com/bfs/activity-plat/static/d32c2bb79f59192cb072d7bf79b61c6d/vZlKJcy386.png

@@ -1,0 +1,7 @@
+reference: https://www.bilibili.com/blackboard/era/XaW8EPOQrWcPYK3e.html
+Flins: https://i0.hdslb.com/bfs/activity-plat/static/20250828/588128e326264ff3faa1cbdf4a921036/Su0e5wFMvY.zip
+Lauma: https://i0.hdslb.com/bfs/activity-plat/static/20250829/588128e326264ff3faa1cbdf4a921036/lK3lg4Ja5m.zip
+Nahida: https://i0.hdslb.com/bfs/activity-plat/static/20250828/588128e326264ff3faa1cbdf4a921036/TzANZIUpFb.zip
+Yelan: https://i0.hdslb.com/bfs/activity-plat/static/20250828/588128e326264ff3faa1cbdf4a921036/wSHpsEicKu.zip
+Aino: https://i0.hdslb.com/bfs/activity-plat/static/20250829/588128e326264ff3faa1cbdf4a921036/85wvGJu7bI.zip
+background: https://i0.hdslb.com/bfs/activity-plat/static/d41d8cd98f00b204e9800998ecf8427e/xySLPmnX2Y.png

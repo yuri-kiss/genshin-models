@@ -1,0 +1,7 @@
+reference: https://www.bilibili.com/blackboard/activity-HtiRSOn8K9.html
+Baizhu: https://activity.hdslb.com/blackboard/static/20230407/c84ef0977c17fb1198f6887261fea35f/DLMmvycQoM.zip
+Kaveh: https://activity.hdslb.com/blackboard/static/20230407/c84ef0977c17fb1198f6887261fea35f/nNpqcReGhp.zip
+Nahida: https://activity.hdslb.com/blackboard/static/20230407/c84ef0977c17fb1198f6887261fea35f/Frp34Jc2bE.zip
+Nilou: https://activity.hdslb.com/blackboard/static/20230407/c84ef0977c17fb1198f6887261fea35f/g6XamK6KJ8.zip
+Ganyu: https://activity.hdslb.com/blackboard/static/20230407/c84ef0977c17fb1198f6887261fea35f/Igy2PzFSEP.zip
+background: https://i0.hdslb.com/bfs/activity-plat/static/c84ef0977c17fb1198f6887261fea35f/ovRtxpIcXx_w1920_h1080.jpg

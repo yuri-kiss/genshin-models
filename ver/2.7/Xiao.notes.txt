@@ -1,0 +1,1 @@
+Change •ž.png to 服.png and ”§.png to 肌.png to fix the textures not loading
