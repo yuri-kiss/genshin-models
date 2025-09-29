@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "genshin-models-downloader",
+  "version": "1.0.0",
+  "description": "Downloads genshin models.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "keywords": [],
+  "author": {
+    "email": "meow@miyo.icu",
+    "url": "https://miyo.icu/",
+    "name": "Miyo Sho"
+  },
+  "license": "GPL-2.0-only",
+  "type": "commonjs",
+  "dependencies": {
+    "argparse": "^2.0.1",
+    "csv-parse": "^6.1.0",
+    "node-fetch": "^3.3.2"
+  }
+}
