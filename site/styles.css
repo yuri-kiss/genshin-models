@@ -47,6 +47,12 @@ div#app {
   height: auto;
 }
 
+mark {
+  background-color: #ffff00dd;
+  background-blend-mode: color-dodge;
+  mix-blend-mode: plus-lighter;
+}
+
 /*======================================================*/
 /*======================================================*/
 
@@ -226,7 +232,7 @@ div#app div.modelitem > div.modelitemcentral > a.modelitemdownloadbutton {
 
 div#app div.modelitem > img.backgroundimage {
   width: 110%;
-  height: 150%;
+  height: 62;
 
   position: absolute;
   z-index: 1;

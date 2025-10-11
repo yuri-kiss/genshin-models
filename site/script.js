@@ -34,6 +34,7 @@ void !async function() {
       characters: Object.keys(data.count),
       versions: Object.keys(data.versions),
       backgrounds: {},
+      backgroundcount: 0,
       models: data.versions,
       count: data.count,
     };
@@ -42,6 +43,7 @@ void !async function() {
       if (!rfm.models[version].BACKGROUND) continue;
       rfm.backgrounds['' + version] = rfm.models[version].BACKGROUND;
       Reflect.deleteProperty(rfm.models[version], 'BACKGROUND');
+      ++rfm.backgroundcount;
     }
     data = rfm;
     console.log('Models index (reformatted):', structuredClone(data));
@@ -141,6 +143,17 @@ void !async function() {
     node.addEventListener('click', switchTab.bind(this, node.dataset.tabid));
   });
 
+  const statsTab = tabsDiv.querySelector(`div[data-tabid="stats"]`);
+  const statsHolder = document.createElement('div');
+  statsHolder.style['margin-left'] = '15px';
+  statsHolder.style['margin-top']  = '15px';
+  statsHolder.innerHTML = `
+    <strong>Last updated: ${(new Date(data._$.lastupdate)).toISOString()}</strong><br />
+    <br />
+    <span>Total model count: <mark>${data._$.totalcount}</mark></span><br />
+    <span>Total background count: <mark>${data._$.backgroundcount}</mark></span><br />
+  `;
+
   const modelsTab = tabsDiv.querySelector(`div[data-tabid="models"]`);
   for (let i = 0, character; i < data._$.characters.length; ++i) {
     if (data._$.characters[i].includes('[Emotes]')) continue;
@@ -149,8 +162,13 @@ void !async function() {
     node.setAttribute('aria-role', 'row');
     node._character = {};
 
+    const statsNode = document.createElement('span');
+
     character = data.getCharacter(data._$.characters[i], null, true);
     node._character[character.version] = character;
+    statsNode.appendChild(document.createTextNode(character.name + ': '));
+
+    const characterCount = data.getCharacterCount(character.name);
 
     {
       const wishIcon = document.createElement('img');
@@ -199,6 +217,7 @@ void !async function() {
     };
     central.appendChild(versionOption);
 
+    let versions = [character.version];
     if (character.version !== '1.0') {
       for (let j = data._$.versions.indexOf(character.version) + 1,
                version, temp; j < data._$.versions.length; ++j) {
@@ -209,6 +228,7 @@ void !async function() {
           character = temp;
           continue;
         }
+        versions.push(version);
         node._character[version] = character;
 
         temp = document.createElement('option');
@@ -219,8 +239,17 @@ void !async function() {
     }
     character = null;
 
+    {
+      const statsMark = document.createElement('mark');
+      statsMark.textContent = `(${characterCount}) in ${versions.join(', ')}`;
+      statsNode.appendChild(statsMark);
+    };
+
+    statsHolder.appendChild(statsNode);
+    statsHolder.appendChild(document.createElement('br'));
     modelsTab.appendChild(node);
   }
+  statsTab.appendChild(statsHolder);
 
   tabsDiv.querySelector(`div[data-tabid="credits"]`).innerHTML = `<div style="margin-top: 15px; margin-left: 15px"><span>
     Created by <a href="https://miyo.icu/">Miyo Sho</a> &lt;<a href="mailto:meow@miyo.icu">meow@miyo.icu</a>&gt;.<br />
