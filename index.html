@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- License: GPL-2.0 -->
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Device META -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="title" content="miyo.icu - Genshin model archive" />
+    <meta name="description" content="Genshin model archive - An archive of all the publicly shared miHoYo Genshin Impact models and their version banners." />
+    <meta name="keywords" content="genshin, mikumikudance, impact" />
+    <meta name="author" content="Miyo Sho" />
+    <meta name="url" content="https://genshinmodels.miyo.icu/" />
+    <meta property="type" content="website" />
+    <meta name="theme-color" content="#f75283" />
+    <!-- Facebook / Open graph / Skype -->
+    <meta property="og:title" content="miyo.icu - Genshin model archive" />
+    <meta name="og:description" content="Genshin model archive - An archive of all the publicly shared miHoYo Genshin Impact models and their version banners." />
+    <meta name="og:keywords" content="genshin, mikumikudance, impact" />
+    <meta name="og:author" content="Miyo Sho" />
+    <meta name="og:url" content="https://genshinmodels.miyo.icu/" />
+    <meta property="og:type" content="website" />
+    <meta name="og:theme-color" content="#f75283" />
+    <meta property="og:image" content="https://genshinmodels.miyo.icu/site/favicon.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://genshinmodels.miyo.icu/" />
+    <meta property="twitter:title" content="miyo.icu - Genshin model archive" />
+    <meta property="twitter:description" content="Genshin model archive - An archive of all the publicly shared miHoYo Genshin Impact models and their version banners." />
+    <!-- End META -->
+
+    <title>Miyos genshin model archive</title>
+    <base target="_blank" href="./" />
+    <link rel="expect" />
+    
+    <link rel="favicon" href="site/favicon.png" type="image/png" />
+    <link rel="icon" href="site/favicon.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&amp;display=swap" crossorigin="anonymous" />
+    
+    <link rel="stylesheet" href="site/styles.css" type="text/css"></style>
+    <style id="colourmaker" type="text/css">/*==================*/</style>
+    <script async type="text/javascript" blocking="render">{
+      const style = document.head.querySelector('style#colourmaker');
+
+      // @todo: this
+      
+      style.textContent = '';
+    }</script>
+  </head>
+  <body>
+    <main class="loading" role="main">
+      <div id="loading" role="region" aria-label="Loading screen">
+        <div class="hasjs" role="text">Loading</div>
+        <noscript>
+          <style type="text/css">
+            *.hasjs {
+              display: none;
+              visibility: hidden;
+              color: red;
+            }
+          </style>
+          <span>This site requires JavaScript to function!</span>
+        </noscript>
+      </div>
+      <div id="app" class="hasjs" role="region" aria-label="Main application" data-tabid="models">
+        <header><a target="_top" href="./">Genshin Model Archive</a></header>
+        <div role="toolbar" aria-labelledby="tab selector" aria-orientation="horizontal">
+          <span role="radio" aria-checked="true"
+                data-tabid="models" class="activeT">Models</span>
+          <span role="radio" aria-checked="false"
+                data-tabid="bgs">Backgrounds</span>
+          <span role="radio" aria-checked="false"
+                data-tabid="stats">Statistics</span>
+          <span role="radio" aria-checked="false"
+                data-tabid="credits">Credits</span>
+        </div>
+        <div role="tablist" data-tabid="models">
+          <div role="tab" data-tabid="models"
+               aria-selected="true"
+               class="tab" aria-hidden="false">
+              </div>
+          <div role="tab" data-tabid="bgs"
+               aria-selected="false"
+               class="tab hiddenT" aria-hidden="true">
+              </div>
+          <div role="tab" data-tabid="stats"
+               aria-selected="false"
+               class="tab hiddenT" aria-hidden="true">
+              </div>
+          <div role="tab" data-tabid="credits"
+               aria-selected="false"
+               class="tab hiddenT" aria-hidden="true">
+              </div>
+        </div>
+      </div>
+    </main>
+    <script defer type="text/javascript" src="site/script.js"></script>
+  </body>
+</html>

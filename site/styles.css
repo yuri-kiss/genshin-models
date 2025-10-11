@@ -1,0 +1,213 @@
+/*======================================================*/
+
+:root {
+  color-scheme: light dark;
+    --light-text-colour: #111111;
+    --light-background-colour-lighter: #ffffff;
+    --light-background-colour: #eeeeee;
+    --light-background-colour-darker: #dddddd;
+    --light-background-colour-evendarker: #c9c9c9;
+    --dark-text-colour: #eeeeee;
+    --dark-background-colour-lighter: #282828;
+    --dark-background-colour: #111111;
+    --dark-background-colour-darker: #090909;
+    --dark-background-colour-evendarker: #070707;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {/*== empty ==*/}
+}
+@media (prefers-color-scheme: dark) {
+  :root {/*== empty ==*/}
+}
+
+/*======================================================*/
+/*======================================================*/
+
+:root, html {
+  width: 100vw;
+  height: 100vh;
+}
+body {
+  font-family: "Sofia Sans", Helvetica, Arial, sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  overflow-x: clip;
+}
+body, main, div#loading, div#app {
+  margin: 0px;
+  padding: 0px;
+}
+body, main, div#loading {
+  width: 100%;
+  height: 100%;
+}
+div#app {
+  width: 100vw;
+  height: auto;
+}
+
+/*======================================================*/
+/*======================================================*/
+
+main.loading {
+  overflow: hidden;
+}
+main.loading > div#loading {
+  overflow: hidden;
+
+  display: block;
+  text-align: center;
+  place-content: center;
+  
+  font-weight: 450;
+  font-size: x-large;
+}
+main.loading > div#loading.error {
+  color: red;
+} 
+main.loading > div#app {
+  display: none;
+  visibility: hidden;
+}
+main.running > div#loading {
+  display: none;
+  visibility: hidden;
+}
+main.running > div#app {
+  display: block;
+}
+
+main.loading > div#loading, main.running > div#app {
+  background-color: light-dark(var(--light-background-colour), var(--dark-background-colour-lighter));
+  color: light-dark(var(--light-text-colour), var(--dark-text-colour));
+}
+
+div#app *.hiddenT {
+  visibility: none;
+  display: none;
+}
+
+/*======================================================*/
+/*======================================================*/
+
+div#app > header {
+  background-color: light-dark(var(--light-background-colour-darker), var(--dark-background-colour));
+  width: 100%;
+  height: 3.4rem;
+
+  font-weight: bold;
+  font-size: xx-large;
+
+  align-content: center;
+  text-align: center;
+}
+
+div#app > header > a {
+  margin-left: 5px;
+
+  text-decoration: none;
+  color: inherit !important;
+}
+
+div#app > div[role="toolbar"] {
+  background-color: light-dark(var(--light-background-colour-evendarker), var(--dark-background-colour-darker));
+  width: 100%;
+  height: 1.4rem;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex-flow: row;
+
+  justify-content: space-evenly;
+}
+
+div#app > div[role="toolbar"] > span[role="radio"] {
+  width: 100%;
+  height: 100%;
+
+  place-content: center;
+  text-align: center;
+
+  background-color: inherit;
+  transition: background-color 220ms ease-out;
+
+  cursor: pointer;
+}
+div#app > div[role="toolbar"] > span[role="radio"].activeT {
+  background-color: light-dark(var(--light-background-colour-darker), var(--dark-background-colour));
+}
+
+div#app > div[role="tablist"], div#app > div[role="tablist"] > div[role="tab"] {
+  width: auto;
+}
+
+/*======================================================*/
+/*======================================================*/
+
+div#app div.modelitem {
+  width: 100%;
+  min-height: 265px;
+  height: 265px;
+
+  display: flex;
+}
+
+div#app div.modelitem > img.modelitemicon {
+  width: 280px;
+  height: 256px;
+  aspect-ratio: 16 / 9;
+
+  margin-left: 30px;
+}
+
+div#app div.modelitem > div.modelitemname {
+  border-right: light-dark(var(--light-background-colour-lighter), var(--dark-background-colour)) 5px solid;
+
+  display: inline;
+  font-weight: bold;
+  font-size: x-large;
+
+  width: 120px;
+  align-content: center;
+  margin-left: 15px;
+  padding-right: 15px;
+}
+
+div#app div.modelitem > div.modelitemcentral {
+  display: inline;
+  align-content: center;
+  margin-left: 15px;
+
+  width: fit-content;
+  margin-left: 15px;
+
+  color: inherit;
+}
+div#app div.modelitem > div.modelitemcentral > a.modelitemdownloadbutton {
+  display: inline;
+  font-weight: 500;
+  font-size: large;
+
+  width: 100px;
+  height: fit-content;
+  
+  padding: 5px;
+  background: #00ff00;
+  border: #ff0000 4px solid;
+  border-radius: 5px;
+
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+div#app div.modelitem > div.modelitemcentral > select {
+  margin-left: 10px;
+}
+
+div#app[data-tabid="credits"] {
+  height: -webkit-fill-available;
+}
+
+/*======================================================*/
