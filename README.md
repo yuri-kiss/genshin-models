@@ -14,7 +14,11 @@ and then you can use `node . --help` to see help on using the CLI.
 
 ## Website
 
-The website 
+The website allows you to view cool statistics, download the version banners and the models from all the versions easilly using a UI.
+
+https://genshinmodels.miyo.icu/
+
+**<mark>I AM STILL WORKING ON THE SITE SO IT DOES NOT WORK RIGHT NOW!!!</mark>**
 
 ## License
 
