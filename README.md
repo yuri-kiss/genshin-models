@@ -12,11 +12,15 @@ Just run `npm ci` (node v22)
 
 and then you can use `node . --help` to see help on using the CLI.
 
+## Website
+
+The website 
+
 ## License
 
 Every model in this repository is owned by miHoYo, I take no credit for them.
 
-The following only applys to the code I wrote and NOT the models.
+The following only applys to the code I wrote, the website but NOT the models.
 
 **SPDX-License-Identifier**: GPLv2-only
 

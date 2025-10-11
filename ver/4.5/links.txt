@@ -1,6 +1,6 @@
 reference: https://www.bilibili.com/blackboard/activity-eA6ktwSBJc.html
 Chiori: https://activity.hdslb.com/blackboard/static/20240312/c84ef0977c17fb1198f6887261fea35f/HxKsGbH2UW.zip
-Itto: https://activity.hdslb.com/blackboard/static/20240308/ed208e0685394224eb0049ea11d67202/PiZSQdByN0.zip
+Arataki Itto: https://activity.hdslb.com/blackboard/static/20240308/ed208e0685394224eb0049ea11d67202/PiZSQdByN0.zip
 Neuvillette: https://activity.hdslb.com/blackboard/static/20240402/c84ef0977c17fb1198f6887261fea35f/NwnQPvI2Ck.zip
 Kaedehara Kazuha: https://activity.hdslb.com/blackboard/static/20240402/c84ef0977c17fb1198f6887261fea35f/3LbWF6z7fo.zip
 Dori: https://activity.hdslb.com/blackboard/static/20231019/c84ef0977c17fb1198f6887261fea35f/Ner28gQSdI.zip

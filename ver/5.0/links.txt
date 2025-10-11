@@ -2,12 +2,12 @@ reference: https://www.bilibili.com/blackboard/era/7eX5dopGNqU68rKB.html
 Mualani: https://activity.hdslb.com/blackboard/static/20240827/d32c2bb79f59192cb072d7bf79b61c6d/cPxGdCySJi.zip
 Kaedehara Kazuha: https://activity.hdslb.com/blackboard/static/20240827/d32c2bb79f59192cb072d7bf79b61c6d/EkPgvhz5NT.zip
 Kachina: https://activity.hdslb.com/blackboard/static/20240828/d32c2bb79f59192cb072d7bf79b61c6d/aIyBI7p5d8.zip
-Bennet: https://activity.hdslb.com/blackboard/static/20240827/d32c2bb79f59192cb072d7bf79b61c6d/wBLVVmc3xu.zip
+Bennett: https://activity.hdslb.com/blackboard/static/20240827/d32c2bb79f59192cb072d7bf79b61c6d/wBLVVmc3xu.zip
 Xinyan: https://activity.hdslb.com/blackboard/static/20240827/d32c2bb79f59192cb072d7bf79b61c6d/2EaMAcgo7O.zip
 Kinich: https://activity.hdslb.com/blackboard/static/20240827/d32c2bb79f59192cb072d7bf79b61c6d/4Mlnp3YDQJ.zip
 Raiden Shogun: https://activity.hdslb.com/blackboard/static/20240827/d32c2bb79f59192cb072d7bf79b61c6d/niwXpFdhmh.zip
 Tribe Companions: https://activity.hdslb.com/blackboard/maxfiles/587f0b14d5bd43274c379bb869cc385d/1726114441300.zip
-Sara: https://activity.hdslb.com/blackboard/static/20240914/d32c2bb79f59192cb072d7bf79b61c6d/L8Y1u7U5eC.zip
+Kujou Sara: https://activity.hdslb.com/blackboard/static/20240914/d32c2bb79f59192cb072d7bf79b61c6d/L8Y1u7U5eC.zip
 Chevreuse: https://activity.hdslb.com/blackboard/static/20240914/d32c2bb79f59192cb072d7bf79b61c6d/9YIx380pAk.zip
 Thoma: https://activity.hdslb.com/blackboard/static/20240914/d32c2bb79f59192cb072d7bf79b61c6d/uer1zLHMT2.zip
 background: https://i0.hdslb.com/bfs/activity-plat/static/d32c2bb79f59192cb072d7bf79b61c6d/YN5PkrTeya.png

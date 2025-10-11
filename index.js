@@ -80,7 +80,7 @@ function normalizeName(name, note, skipAlt) {
     }
   }
   if (alt && !skipAlt) next.push(`(alt${event ? ' event' : ''}${skin ? ' skin' : ''})`);
-  return next.join(' '); 
+  return next.join(' ');
 }
 
 let downloading = 0;
@@ -107,8 +107,16 @@ function doFileDownload({ dlURL, fileName, folder }) {
   });
 }
 
+let modelsJSON = {
+  count: {},
+  versions: {},
+  latest: -1, total: 0,
+  date: 0,
+};
+
 let csvDone = false;
-let folder = 'nil', frame = '';
+let latest = -1, total = 0;
+let version = '-1', folder = 'nil', frame = '';
 fs.createReadStream(args.file[0])
   .pipe(csvparse.parse({ delimiter: ',' }))
   .on('data', (data) => {
@@ -118,9 +126,15 @@ fs.createReadStream(args.file[0])
       if (frame !== '') {
         fs.writeFileSync(path.join(folder, 'links.txt'), frame);
       }
-      folder = `ver/${name.split(' ')[0]}`;
+      version = name.split(' ')[0];
+      folder = `ver/${version}`;
       frame = `reference: ${data[KEY_URL]}`;
       if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true });
+      if (!modelsJSON.versions[version]) modelsJSON.versions[version] = {};
+      if (!isNaN(version)) {
+        const temp = parseFloat(version);
+        if (temp > latest) latest = temp;
+      }
       return;
     } else if (name.includes('background')) {
       const dlURL = data[KEY_URL];
@@ -132,6 +146,7 @@ fs.createReadStream(args.file[0])
         return;
       }
       frame += `\nbackground: ${dlURL}`;
+      modelsJSON.versions[version].BACKGROUND = [`background.${type}`, dlURL, ''];
       if (fs.existsSync(path.join(folder, `background.${type}`))) {
         if (!args.silent && args.dbg) console.debug(`Skipping background.${type} at ${dlURL}`);
         return
@@ -161,6 +176,10 @@ fs.createReadStream(args.file[0])
     if (!fs.existsSync(path.join(folder, noteName)) && data[KEY_NOTES].trim() != '') {
       fs.writeFileSync(path.join(folder, noteName), data[KEY_NOTES]);
     }
+    modelsJSON.versions[version][normal] = [fileName, dlURL, (data[KEY_NOTES] || '').trim()];
+    if (!modelsJSON.count[normal]) modelsJSON.count[normal] = 0;
+    ++modelsJSON.count[normal];
+    ++total;
     if (fs.existsSync(path.join(folder, fileName))) {
       if (!args.silent && args.dbg) console.debug('Skipping', fileName, `at ${dlURL}`);
       return;
@@ -176,6 +195,9 @@ fs.createReadStream(args.file[0])
       resolve();
     }, 100);
   });
+
+  modelsJSON.latest = latest;
+  modelsJSON.total = total;
 
   const sha512 = (stream) => (new Promise((resolve, reject) => {
     const hash = crypto.createHash('sha512');
@@ -223,6 +245,9 @@ fs.createReadStream(args.file[0])
       }
     }
   })())}
+
+  modelsJSON.date = Date.now();
+  fs.writeFileSync('ver/data.json', JSON.stringify(modelsJSON));
 
   FINAL_RESOLVE();
 });})();

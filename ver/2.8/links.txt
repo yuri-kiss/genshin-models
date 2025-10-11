@@ -1,6 +1,6 @@
 reference: https://www.bilibili.com/blackboard/activity-AuBHIaNfhy.html
-Kazuha: https://activity.hdslb.com/blackboard/static/20220711/c84ef0977c17fb1198f6887261fea35f/uf71JlNIzw.zip
-Heizou: https://activity.hdslb.com/blackboard/static/20220711/c84ef0977c17fb1198f6887261fea35f/VLpzBkRl21.zip
+Kaedehara Kazuha: https://activity.hdslb.com/blackboard/static/20220711/c84ef0977c17fb1198f6887261fea35f/uf71JlNIzw.zip
+Shikanoin Heizou: https://activity.hdslb.com/blackboard/static/20220711/c84ef0977c17fb1198f6887261fea35f/VLpzBkRl21.zip
 Klee: https://activity.hdslb.com/blackboard/static/20220711/c84ef0977c17fb1198f6887261fea35f/Z61FIkn35m.zip
 Yoimiya: https://activity.hdslb.com/blackboard/static/20220711/c84ef0977c17fb1198f6887261fea35f/ZCiAovYidl.zip
 Mona (alt skin): https://activity.hdslb.com/blackboard/static/20220711/c84ef0977c17fb1198f6887261fea35f/pmYy5a2XbA.zip

@@ -2,7 +2,7 @@ reference: bilibili.com/blackboard/activity-WGjpl5mUuQ.html
 Neuvillette: https://activity.hdslb.com/blackboard/static/20230921/55e5deafb5be7f1eeac6f9bd4da51855/rXSWmwimil.zip
 Wriothesley: https://activity.hdslb.com/blackboard/maxfiles/f9e8c6201bea9dcbc0538c5d01845fac/1695297888235.zip
 Hu Tao: https://activity.hdslb.com/blackboard/static/20230921/55e5deafb5be7f1eeac6f9bd4da51855/k3ueXY8MNR.zip
-Veni: https://activity.hdslb.com/blackboard/static/20230921/55e5deafb5be7f1eeac6f9bd4da51855/TOrcFdK2er.zip
+Venti: https://activity.hdslb.com/blackboard/static/20230921/55e5deafb5be7f1eeac6f9bd4da51855/TOrcFdK2er.zip
 Diona: https://activity.hdslb.com/blackboard/static/20230921/55e5deafb5be7f1eeac6f9bd4da51855/h9SH4JPsUr.zip
 Fischl: https://activity.hdslb.com/blackboard/static/20230921/55e5deafb5be7f1eeac6f9bd4da51855/5a6unQWof8.zip
 Xingqiu: https://activity.hdslb.com/blackboard/static/20230921/55e5deafb5be7f1eeac6f9bd4da51855/kzFfOB9UYF.zip
