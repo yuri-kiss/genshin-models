@@ -123,7 +123,10 @@ div#app > div[role="toolbar"] {
   justify-content: space-evenly;
 }
 
-div#app > div[role="toolbar"] > span[role="radio"] {
+div#app > div[role="toolbar"] > a[role="radio"] {
+  text-decoration: none !important;
+  color: inherit !important;
+
   width: 100%;
   height: 100%;
 
@@ -135,7 +138,7 @@ div#app > div[role="toolbar"] > span[role="radio"] {
 
   cursor: pointer;
 }
-div#app > div[role="toolbar"] > span[role="radio"].activeT {
+div#app > div[role="toolbar"] > a[role="radio"].activeT {
   background-color: light-dark(var(--light-background-colour-darker), var(--dark-background-colour));
 }
 
@@ -152,6 +155,8 @@ div#app div.modelitem {
   height: 265px;
 
   display: flex;
+
+  position: relative;
 }
 
 div#app div.modelitem > img.modelitemicon {
@@ -160,6 +165,9 @@ div#app div.modelitem > img.modelitemicon {
   aspect-ratio: 16 / 9;
 
   margin-left: 30px;
+
+  position: relative;
+  z-index: 2;
 }
 
 div#app div.modelitem > div.modelitemname {
@@ -173,6 +181,17 @@ div#app div.modelitem > div.modelitemname {
   align-content: center;
   margin-left: 15px;
   padding-right: 15px;
+
+  position: relative;
+  z-index: 2;
+}
+
+div#app div.modelitem > div.backgrounditemversion {
+  border-right: none !important;
+
+  width: 60px;
+
+  mix-blend-mode: exclusion;
 }
 
 div#app div.modelitem > div.modelitemcentral {
@@ -184,6 +203,9 @@ div#app div.modelitem > div.modelitemcentral {
   margin-left: 15px;
 
   color: inherit;
+
+  position: relative;
+  z-index: 2;
 }
 div#app div.modelitem > div.modelitemcentral > a.modelitemdownloadbutton {
   display: inline;
@@ -200,6 +222,14 @@ div#app div.modelitem > div.modelitemcentral > a.modelitemdownloadbutton {
 
   text-decoration: none !important;
   color: inherit !important;
+}
+
+div#app div.modelitem > img.backgroundimage {
+  width: 110%;
+  height: 150%;
+
+  position: absolute;
+  z-index: 1;
 }
 
 div#app div.modelitem > div.modelitemcentral > select {

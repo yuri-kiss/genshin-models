@@ -67,6 +67,7 @@ void !async function() {
       return {
         downloadurl: `ver/${version}/${this._$.backgrounds[version][0]}`,
         originalurl: this._$.backgrounds[version][1],
+        downloadfile: this._$.backgrounds[version][0],
       };
     }
 
@@ -112,12 +113,13 @@ void !async function() {
 
   const tabList = appDiv.querySelector('div[role="toolbar"]');
   const tabsDiv = appDiv.querySelector('div[role="tablist"]');
-  function switchTab(id) {
+  function switchTab(id, event) {
     if (id === tabsDiv.dataset.tabid) return false;
+    event.preventDefault();
     {
       const prev = tabsDiv.querySelector(`div[data-tabid="${tabsDiv.dataset.tabid}"]`);
       prev.ariaHidden = true;
-      const tab = tabList.querySelector(`span[data-tabid="${tabsDiv.dataset.tabid}"]`);
+      const tab = tabList.querySelector(`a[data-tabid="${tabsDiv.dataset.tabid}"]`);
       tab.classList.remove('activeT');
       tab.ariaChecked = false;
       prev.ariaSelected = false;
@@ -126,15 +128,16 @@ void !async function() {
     tabsDiv.dataset.tabid = id;
     const curr = tabsDiv.querySelector(`div[data-tabid="${id}"]`);
     curr.ariaHidden = false;
-    const tab = tabList.querySelector(`span[data-tabid="${id}"]`);
+    const tab = tabList.querySelector(`a[data-tabid="${id}"]`);
     tab.classList.add('activeT');
     tab.ariaChecked = true;
     curr.ariaSelected = true;
     curr.classList.remove('hiddenT');
     appDiv.dataset.tabid = id;
+    window.location.hash = `#${id}`;
     return true;
   }
-  tabList.querySelectorAll('span').forEach(node => {
+  tabList.querySelectorAll('a').forEach(node => {
     node.addEventListener('click', switchTab.bind(this, node.dataset.tabid));
   });
 
@@ -225,6 +228,67 @@ void !async function() {
     Special thanks to <a href="https://www.hoyolab.com/accountCenter/postList?id=82180096">JohnSlaughter</a> for making the original spreadsheet this was based on!<br />
   </span></div>`;
 
+  const backgroundsTab = tabsDiv.querySelector(`div[data-tabid="bgs"]`);
+  for (let i = 0, version; i < data._$.versions.length; ++i) {
+    version = data._$.versions[i];
+    if (!data.hasBackground(version)) continue;
+    
+    const node = document.createElement('div');
+    const background = data.getBackground(version);
+    node.classList = 'modelitem';
+    node.setAttribute('aria-role', 'row');
+
+    {
+      const backgroundImage = document.createElement('img');
+      backgroundImage.classList = 'backgroundimage';
+      backgroundImage.loading = 'lazy';
+      backgroundImage.src = background.downloadurl;
+      node.appendChild(backgroundImage);
+    };
+
+    {
+      const temp = document.createElement('div');
+      temp.classList = 'modelitemname backgrounditemversion';
+      temp.style.mixBlendMode = 'exclusion';
+      temp.textContent = version;
+      node.appendChild(temp);
+    };
+
+    {
+      const central = document.createElement('div');
+      central.classList = 'modelitemcentral';
+      node.appendChild(central);
+
+      const downloadButton = document.createElement('a');
+      downloadButton.classList = 'modelitemdownloadbutton';
+      downloadButton.target = '_blank';
+      downloadButton.href = background.downloadurl;
+      downloadButton.download = `${version} - ${background.downloadfile}`;
+      downloadButton.setAttribute('aria-role', 'button');
+      downloadButton.textContent = 'Download';
+      central.appendChild(downloadButton);
+
+      const originalViewer = document.createElement('a');
+      originalViewer.style.marginLeft = '15px';
+      originalViewer.classList = 'modelitemdownloadbutton';
+      originalViewer.target = '_blank';
+      originalViewer.href = background.originalurl;
+      originalViewer.setAttribute('aria-role', 'button');
+      originalViewer.textContent = 'Original';
+      central.appendChild(originalViewer);
+    };
+
+    backgroundsTab.appendChild(node);
+  }
+
   main.classList = 'running';
   globalThis.GenshinModels = data;
+
+  {
+    const hash = window.location.hash.slice(1) || '';
+    if (!hash) return;
+    const node = document.querySelector(`a[data-tabid="${hash}"]`);
+    if (!node) return;
+    switchTab(hash, new Event('N/A'));
+  };
 }();
