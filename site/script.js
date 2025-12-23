@@ -52,7 +52,7 @@ void !async function() {
     constructor(data) {
       this._$ = data;
     }
-    
+
     lastUpdate() {
       return this._$.lastupdate;
     }
@@ -116,8 +116,8 @@ void !async function() {
   const tabList = appDiv.querySelector('div[role="toolbar"]');
   const tabsDiv = appDiv.querySelector('div[role="tablist"]');
   function switchTab(id, event) {
-    if (id === tabsDiv.dataset.tabid) return false;
     event.preventDefault();
+    if (id === tabsDiv.dataset.tabid) return false;
     {
       const prev = tabsDiv.querySelector(`div[data-tabid="${tabsDiv.dataset.tabid}"]`);
       prev.ariaHidden = true;
@@ -261,7 +261,7 @@ void !async function() {
   for (let i = 0, version; i < data._$.versions.length; ++i) {
     version = data._$.versions[i];
     if (!data.hasBackground(version)) continue;
-    
+
     const node = document.createElement('div');
     const background = data.getBackground(version);
     node.classList = 'modelitem';

@@ -1,1 +1,33 @@
+# Set the default behavior, in case people don't have core.autocrlf set
 * text=auto eol=lf
+
+# Note: Use CRLF for Windows-specific file types
+*.ini text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+README text eol=lf
+LICENSE text eol=lf
+TRADEMARK text eol=lf
+COPYING text eol=lf
+CONTRIBUTORS text eol=lf
+CITATION.cff text eol=lf
+*.xhtml text eol=lf
+*.html text eol=lf
+*.htm text eol=lf
+*.css text eol=lf
+*.mjs text eol=lf
+*.cjs text eol=lf
+*.js text eol=lf
+*.md text eol=lf
+*.adoc text eol=lf
+*.txt text eol=lf
+*.cff text eol=lf
+*.json text eol=lf
+*.json5 text eol=lf diff=json
+.nvmrc text eol=lf
+.editorconfig text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+.gitmodules text eol=lf
