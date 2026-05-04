@@ -41,9 +41,17 @@ argparser.add_argument('--dbg', {
   action: 'store_true',
   help: 'Enables debug logging for errors (warnings can be disabled using --silent)',
 });
+argparser.add_argument('--nozip', {
+  action: 'store_true',
+  help: 'Disable the conversion step for RAR/7Z to zip',
+});
+argparser.add_argument('--nodl', {
+  action: 'store_true',
+  help: 'Disables the downloading step',
+});
 argparser.add_argument('--rmd', {
   action: 'store_true',
-  help: '(DEBUG) Goes through every file and removes duplicates per subfolder (keeps newest)',
+  help: 'Goes through every file and removes duplicates per subfolder (keeps newest)',
 });
 const args = argparser.parse_args();
 
@@ -192,106 +200,110 @@ async function tryArchiveToZip({ fileName, folder }) {
 let csvDone = false;
 let latest = -1, total = 0;
 let version = '-1', folder = 'nil', frame = '';
-fs.createReadStream(args.file[0])
-  .pipe(csvparse.parse({ delimiter: ',' }))
-  .on('data', (data) => {
-    const name = data[KEY_NAME].toLowerCase();
-    if (name.includes('character name') || name.startsWith('**') || name.trim() == '') return;
-    if (name.includes('release')) {
-      if (frame !== '') {
-        fs.writeFileSync(path.join(folder, 'links.txt'), frame);
+if (!args.nodl) {
+  fs.createReadStream(args.file[0])
+    .pipe(csvparse.parse({ delimiter: ',' }))
+    .on('data', (data) => {
+      const name = data[KEY_NAME].toLowerCase();
+      if (name.includes('character name') || name.startsWith('**') || name.trim() == '') return;
+      if (name.includes('release')) {
+        if (frame !== '') {
+          fs.writeFileSync(path.join(folder, 'links.txt'), frame);
+        }
+        version = name.split(' ')[0];
+        folder = `ver/${version}`;
+        frame = `reference: ${data[KEY_URL]}`;
+        if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true });
+        if (!modelsJSON.versions[version]) modelsJSON.versions[version] = {};
+        if (!isNaN(version)) {
+          const temp = parseFloat(version);
+          if (temp > latest) latest = temp;
+        }
+        return;
+      } else if (name.includes('background')) {
+        const dlURL = data[KEY_URL];
+        let type = '';
+        if (dlURL.endsWith('png')) type = 'png';
+        else if (dlURL.endsWith('jpg')) type = 'jpg';
+        else {
+          if (!args.silent) console.warn(`Unable to download background, unknown type in URL ${dlURL}`);
+          return;
+        }
+        frame += `\nbackground: ${dlURL}`;
+        modelsJSON.versions[version].BACKGROUND = [`background.${type}`, dlURL, ''];
+        if (fs.existsSync(path.join(folder, `background.${type}`))) {
+          if (!args.silent && args.dbg && !args.nnw) console.debug(`Skipping background.${type} at ${dlURL}`);
+          return;
+        }
+        return doFileDownload.bind(this, { dlURL: data[KEY_URL], fileName: `background.${type}`, folder })().catch((error) => {
+          if (!args.silent) console.error('File download errored.', error);
+          throw error;
+        });
       }
-      version = name.split(' ')[0];
-      folder = `ver/${version}`;
-      frame = `reference: ${data[KEY_URL]}`;
-      if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true });
-      if (!modelsJSON.versions[version]) modelsJSON.versions[version] = {};
-      if (!isNaN(version)) {
-        const temp = parseFloat(version);
-        if (temp > latest) latest = temp;
+      const dlURL = data[KEY_URL].trim();
+      let fileName = normalizeName(name, data[KEY_NOTES]);
+      const normal = fileName;
+      if (dlURL == '') {
+        if (!args.silent) console.warn(fileName, 'is missing a url!');
+        return;
       }
-      return;
-    } else if (name.includes('background')) {
-      const dlURL = data[KEY_URL];
-      let type = '';
-      if (dlURL.endsWith('png')) type = 'png';
-      else if (dlURL.endsWith('jpg')) type = 'jpg';
+      if (fileName.includes('?')) {
+        if (!args.silent) console.warn(fileName, 'has to be skipped due to a bad file name');
+        return;
+      }
+      const isZIP = dlURL.endsWith('zip');
+      if (isZIP) fileName += '.zip';
+      else if (dlURL.endsWith('rar')) fileName += '.rar';
+      else if (dlURL.endsWith('7z')) fileName += '.7z';
       else {
-        if (!args.silent) console.warn(`Unable to download background, unknown type in URL ${dlURL}`);
+        if (!args.silent) console.warn('Could not find attachment type for', fileName);
         return;
       }
-      frame += `\nbackground: ${dlURL}`;
-      modelsJSON.versions[version].BACKGROUND = [`background.${type}`, dlURL, ''];
-      if (fs.existsSync(path.join(folder, `background.${type}`))) {
-        if (!args.silent && args.dbg && !args.nnw) console.debug(`Skipping background.${type} at ${dlURL}`);
+      if (!isZIP && !fs.existsSync(path.join(folder, 'rezip'))) {
+        fs.mkdirSync(path.join(folder, 'rezip'));
+      }
+      frame += `\n${normal}: ${dlURL}`;
+      const noteName = `${normal}.notes.txt`;
+      if (!fs.existsSync(path.join(folder, noteName)) && data[KEY_NOTES].trim() != '') {
+        fs.writeFileSync(path.join(folder, noteName), data[KEY_NOTES]);
+      }
+      modelsJSON.versions[version][normal] = [fileName, dlURL, (data[KEY_NOTES] || '').trim()];
+      if (!modelsJSON.count[normal]) modelsJSON.count[normal] = 0;
+      ++modelsJSON.count[normal];
+      ++total;
+      if (fs.existsSync(path.join(folder, fileName))) {
+        if (!args.silent && args.dbg && !args.nnw) console.debug('Skipping', fileName, `at ${dlURL}`);
+        if (!isZIP) {
+          toZipQueue.push({ fileName, folder });
+        }
         return;
       }
-      return doFileDownload.bind(this, { dlURL: data[KEY_URL], fileName: `background.${type}`, folder })().catch((error) => {
-        if (!args.silent) console.error('File download errored.', error);
-        throw error;
-      });
-    }
-    const dlURL = data[KEY_URL].trim();
-    let fileName = normalizeName(name, data[KEY_NOTES]);
-    const normal = fileName;
-    if (dlURL == '') {
-      if (!args.silent) console.warn(fileName, 'is missing a url!');
-      return;
-    }
-    if (fileName.includes('?')) {
-      if (!args.silent) console.warn(fileName, 'has to be skipped due to a bad file name');
-      return;
-    }
-    const isZIP = dlURL.endsWith('zip');
-    if (isZIP) fileName += '.zip';
-    else if (dlURL.endsWith('rar')) fileName += '.rar';
-    else if (dlURL.endsWith('7z')) fileName += '.7z';
-    else {
-      if (!args.silent) console.warn('Could not find attachment type for', fileName);
-      return;
-    }
-    if (!isZIP && !fs.existsSync(path.join(folder, 'rezip'))) {
-      fs.mkdirSync(path.join(folder, 'rezip'));
-    }
-    frame += `\n${normal}: ${dlURL}`;
-    const noteName = `${normal}.notes.txt`;
-    if (!fs.existsSync(path.join(folder, noteName)) && data[KEY_NOTES].trim() != '') {
-      fs.writeFileSync(path.join(folder, noteName), data[KEY_NOTES]);
-    }
-    modelsJSON.versions[version][normal] = [fileName, dlURL, (data[KEY_NOTES] || '').trim()];
-    if (!modelsJSON.count[normal]) modelsJSON.count[normal] = 0;
-    ++modelsJSON.count[normal];
-    ++total;
-    if (fs.existsSync(path.join(folder, fileName))) {
-      if (!args.silent && args.dbg && !args.nnw) console.debug('Skipping', fileName, `at ${dlURL}`);
       if (!isZIP) {
         toZipQueue.push({ fileName, folder });
       }
-      return;
-    }
-    if (!isZIP) {
-      toZipQueue.push({ fileName, folder });
-    }
-    doFileDownload.bind(this, { dlURL, fileName, folder })().catch((error) => {
-      if (!args.silent) console.error('File download errored.', error);
+      doFileDownload.bind(this, { dlURL, fileName, folder })().catch((error) => {
+        if (!args.silent) console.error('File download errored.', error);
+        throw error;
+      });
+    }).on('end', () => void(csvDone = true));
+
+    await new Promise((resolve) => {
+      let interval = -1;
+      interval = setInterval(() => {
+        if (!(csvDone && downloading <= 0)) return;
+        clearInterval(interval);
+        resolve();
+      }, 100);
+    }).catch((error) => {
+      if (!args.silent) console.error('Download waiter promise errored.', error);
       throw error;
     });
-  }).on('end', () => void(csvDone = true));
+  }
 
-  await new Promise((resolve) => {
-    let interval = -1;
-    interval = setInterval(() => {
-      if (!(csvDone && downloading <= 0)) return;
-      clearInterval(interval);
-      resolve();
-    }, 100);
-  }).catch((error) => {
-    if (!args.silent) console.error('Download waiter promise errored.', error);
-    throw error;
-  });
-
-  for (let opts; opts = toZipQueue.pop();) {
-    await tryArchiveToZip(opts);
+  if (!args.nozip) {
+    for (let opts; opts = toZipQueue.pop();) {
+      await tryArchiveToZip(opts);
+    }
   }
 
   modelsJSON.latest = latest;
@@ -311,48 +323,66 @@ fs.createReadStream(args.file[0])
     throw error;
   });
 
-  if (args.rmd) {await ((async () => {
-    const versions = fs.readdirSync('ver');
-    for (let i = 0; i < versions.length; ++i) {
-      const folder = path.join('ver', versions[i]);
-      if (!fs.statSync(folder).isDirectory()) continue;
-      if (!args.silent) console.log('Hashing files in', folder);
-      const files = fs.readdirSync(folder);
-      const hashes = Object.create(null);
-      for (let j = 0; j < files.length; ++j) {
-        if (files[j].endsWith('.txt')) continue;
-        const file = path.join(folder, files[j]);
-        if (fs.statSync(file).isDirectory()) {
-          if (!args.silent) console.warn('Unhandled subdirectory at', file);
-          continue;
+  async function hashFilesInDirectory(directory, match, recursive) {
+    directory = fs.realpathSync(directory);
+
+
+    const files = fs.readdirSync(directory);
+    const fileCount = files.length;
+
+    const hashes = { __proto__: null };
+    for (let i = 0, p; i < fileCount; ++i) {
+      p = path.join(directory, files[i]);
+
+      if (fs.statSync(p).isDirectory()) {
+        if (recursive) {
+          Object.assign(hashes, await hashFilesInDirectory(p, match, true));
         }
-        const hash = await sha512(fs.createReadStream(file));
-        hashes[file] = [hash, fs.statSync(file).ctimeMs];
+        continue;
       }
-      let hashEntries = Object.entries(hashes);
-      for (let j = 0, file; j < hashEntries.length; ++j) {
-        file = hashEntries[j][0];
-        if (!args.silent) console.log('Checking', file);
-        const hash = hashEntries[j][1][0];
-        const other = hashEntries.find(key => key[0] !== file && key[1][0] === hash);
-        if (!other) continue;
-        if (hashes[file][1] > other[1][1]) {
-          if (!args.silent) console.log('  Deleting duplicate', other[0], file);
-          fs.unlinkSync(other[0]);
-          delete hashes[other[0]];
-          hashEntries = Object.entries(hashes);
-        } else {
-          if (!args.silent) console.log('  Deleting duplicate', file, other[0]);
-          fs.unlinkSync(file);
-          delete hashes[file];
-          hashEntries = Object.entries(hashes);
-        }
+
+      if (!match.test(files[i])) continue;
+
+      if (!args.silent) console.log('Hashing file:', p);
+      hashes[p] = [await sha512(fs.createReadStream(p)), fs.statSync(p).ctimeMs];
+    }
+    return hashes;
+  }
+
+  const hashes = await hashFilesInDirectory('ver', /^.+\.(7z|rar|zip|jpg|png|jpeg)$/, true);
+  if (args.rmd) {
+    const VMATCH = /ver[/\\]\d+\.\d+/;
+    let hashEntries = Object.entries(hashes);
+    for (let j = 0, file, ver; j < hashEntries.length; ++j) {
+      file = hashEntries[j][0];
+      ver = file.match(VMATCH)[0];
+      if (!args.silent) console.log('Checking', file);
+      const hash = hashEntries[j][1][0];
+      const other = hashEntries.find(key => key[0] !== file && key[1][0] === hash && key[0].match(VMATCH)[0] === ver);
+      if (!other) continue;
+      if (hashes[file][1] > other[1][1]) {
+        if (!args.silent) console.log('  Deleting duplicate', other[0], file);
+        fs.unlinkSync(other[0]);
+        delete hashes[other[0]];
+        hashEntries = Object.entries(hashes);
+      } else {
+        if (!args.silent) console.log('  Deleting duplicate', file, other[0]);
+        fs.unlinkSync(file);
+        delete hashes[file];
+        hashEntries = Object.entries(hashes);
       }
     }
-  })())}
+  }
 
-  modelsJSON.date = Date.now();
-  fs.writeFileSync('ver/data.json', JSON.stringify(modelsJSON));
+  // hashes.date = Date.now();
+  // fs.writeFileSync('ver/hashes.json', JSON.stringify(hashes));
+
+  if (!args.nodl && !args.nozip) {
+    modelsJSON.date = Date.now();
+    fs.writeFileSync('ver/data.json', JSON.stringify(modelsJSON));
+  } else if (!args.silent) {
+    console.warn('data.json cannot be written when nodl or nozip are enabled.');
+  }
 
   if (fs.existsSync('.tmp')) {
     await rimraf.rimraf('.tmp', {});
