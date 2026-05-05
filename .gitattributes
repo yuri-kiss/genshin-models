@@ -31,3 +31,5 @@ CITATION.cff text eol=lf
 .gitattributes text eol=lf
 .gitignore text eol=lf
 .gitmodules text eol=lf
+
+site/models/** linguist-vendored

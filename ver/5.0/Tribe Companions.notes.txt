@@ -1,1 +1,2 @@
-textures not set so show up as white
+Textures are not setup properly so they appear
+as white.

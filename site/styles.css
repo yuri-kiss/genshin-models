@@ -97,7 +97,7 @@ main.loading > div#loading, main.running > div#app {
 
 div#app *.hiddenT {
   visibility: none;
-  display: none;
+  display: none !important;
 }
 
 /*======================================================*/
@@ -161,9 +161,61 @@ div#app > div[role="tablist"], div#app > div[role="tablist"] > div[role="tab"] {
 /*======================================================*/
 /*======================================================*/
 
+div#app div.splitview {
+  display: flex;
+  justify-content: space-between;
+}
+
+div#app div.splitview > canvas {
+  cursor: pointer;
+}
+
+div#app div#canvasToolbar {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  z-index: 2;
+  position: absolute;
+  margin: 1rem;
+}
+
+div#app div#canvasToolbar button {
+  cursor: pointer;
+}
+
+div#app div#canvasToolbar div {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+div#app div#modelList {
+  padding: 1rem;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+div#app button.closeviewer {
+  display: none;
+}
+
+div#app div.filtercontainer {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+div#app div.modelitemcontainer {
+  box-sizing: border-box;
+  height: 100%;
+  overflow: auto;
+}
+
+div#app div.modelitemcontainer > input {
+}
+
 div#app div.modelitem {
   width: 100%;
-  min-height: 265px;
   height: 265px;
   max-height: 265px;
   overflow-x: unset;
@@ -174,20 +226,20 @@ div#app div.modelitem {
   position: relative;
 }
 
-div#app div.modelitem > img.modelitemicon {
+div#app div.modelitem > div.modelinfo {
+  display: flex;
+}
+
+div#app div.modelitem > div.modelinfo > img.modelitemicon {
   width: 280px;
   height: 256px;
   aspect-ratio: 16 / 9;
-
-  margin-left: 30px;
 
   position: relative;
   z-index: 2;
 }
 
-div#app div.modelitem > div.modelitemname {
-  border-right: light-dark(var(--light-background-colour-lighter), var(--dark-background-colour)) 5px solid;
-
+div#app div.modelitem > div.modelinfo > div.modelitemname {
   display: inline;
   font-weight: bold;
   font-size: x-large;
@@ -210,33 +262,43 @@ div#app div.modelitem > div.backgrounditemversion {
 }
 
 div#app div.modelitem > div.modelitemcentral {
-  display: inline;
-  align-content: center;
-  margin-left: 15px;
-
-  width: fit-content;
-  margin-left: 15px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem;
 
   color: inherit;
 
   position: relative;
   z-index: 2;
 }
-div#app div.modelitem > div.modelitemcentral > a.modelitemdownloadbutton {
+
+div#app div.modelitem > div.modelitemcentral > div.modelbuttonlist {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+div#app div.modelitem > div.modelitemcentral > div.modelbuttonlist > :is(a.modelitemdownloadbutton, button.modelitempreviewbutton) {
   display: inline;
+  box-sizing: content-box;
   font-weight: 500;
   font-size: large;
 
-  width: 100px;
+  width: 100%;
   height: fit-content;
 
   padding: 5px;
-  background: #00ff00;
+  background: #2abb7f;
   border: #ff0000 4px solid;
   border-radius: 5px;
 
+  text-align: center;
   text-decoration: none !important;
   color: inherit !important;
+  cursor: pointer;
+  user-select: none;
 }
 
 div#app div.modelitem > img.backgroundimage {
@@ -247,12 +309,46 @@ div#app div.modelitem > img.backgroundimage {
   z-index: 1;
 }
 
-div#app div.modelitem > div.modelitemcentral > select {
-  margin-left: 10px;
-}
-
 div#app[data-tabid="credits"] {
   height: -webkit-fill-available;
 }
 
 /*======================================================*/
+
+@media (max-width: 1024px) {
+  div#app div.splitview {
+    flex-direction: column;
+  }
+
+  div#app canvas {
+    display: none;
+  }
+}
+
+
+@media (max-width: 768px) {
+  div#app div.modelitem {
+    height: 256px;
+  }
+
+  div#app div.modelitem > div.modelinfo {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  div#app div.modelitem > div.modelinfo > img.modelitemicon {
+    width: 140px;
+    height: 128px;
+  }
+
+  div#app div.modelitem > div.modelinfo > div.modelitemname {
+    width: 140px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  div#app div.modelitem > div.modelitemcentral {
+    margin: 0 2rem;
+  }
+}
