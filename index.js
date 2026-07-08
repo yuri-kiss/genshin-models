@@ -211,7 +211,7 @@ if (!args.nodl) {
           fs.writeFileSync(path.join(folder, 'links.txt'), frame);
         }
         version = name.split(' ')[0];
-        folder = `ver/${version}`;
+        folder = `public/ver/${version}`;
         frame = `reference: ${data[KEY_URL]}`;
         if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true });
         if (!modelsJSON.versions[version]) modelsJSON.versions[version] = {};
@@ -349,7 +349,7 @@ if (!args.nodl) {
     return hashes;
   }
 
-  const hashes = await hashFilesInDirectory('ver', /^.+\.(7z|rar|zip|jpg|png|jpeg)$/, true);
+  const hashes = await hashFilesInDirectory('public/ver', /^.+\.(7z|rar|zip|jpg|png|jpeg)$/, true);
   if (args.rmd) {
     const VMATCH = /ver[/\\]\d+\.\d+/;
     let hashEntries = Object.entries(hashes);
@@ -375,11 +375,11 @@ if (!args.nodl) {
   }
 
   // hashes.date = Date.now();
-  // fs.writeFileSync('ver/hashes.json', JSON.stringify(hashes));
+  // fs.writeFileSync('public/ver/hashes.json', JSON.stringify(hashes));
 
   if (!args.nodl && !args.nozip) {
     modelsJSON.date = Date.now();
-    fs.writeFileSync('ver/data.json', JSON.stringify(modelsJSON));
+    fs.writeFileSync('public/ver/data.json', JSON.stringify(modelsJSON));
   } else if (!args.silent) {
     console.warn('data.json cannot be written when nodl or nozip are enabled.');
   }

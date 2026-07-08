@@ -16,7 +16,7 @@ and then you can use `node . --help` to see help on using the CLI.
 
 ## Website
 
-The website allows you to view cool statistics, download the version banners and the models from all the versions easilly using a UI.
+The website allows you to view cool statistics, download the version banners and the models from all the versions easilly using a UI. To build use `npx webpack`, to run the server use `npx webpack-dev-server`.
 
 https://genshinmodels.miyo.icu/
 
@@ -26,7 +26,7 @@ https://genshinmodels.miyo.icu/
 
 Every model in this repository is owned by miHoYo, I take no credit for them.
 
-The following only applys to the code I wrote, the website but NOT the models or assets by miHoYo.
+The following only applys to the code I wrote & the website but NOT the models or assets by miHoYo.
 
 **SPDX-License-Identifier**: `AGPL-3.0-only`
 

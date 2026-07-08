@@ -20,7 +20,7 @@
     <meta name="og:url" content="https://genshinmodels.miyo.icu/" />
     <meta property="og:type" content="website" />
     <meta name="og:theme-color" content="#f75283" />
-    <meta property="og:image" content="https://genshinmodels.miyo.icu/site/favicon.png">
+    <meta property="og:image" content="https://genshinmodels.miyo.icu/favicon.png">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://genshinmodels.miyo.icu/" />
@@ -32,22 +32,12 @@
     <base target="_blank" href="./" />
     <link rel="expect" />
 
-    <link rel="favicon" href="site/favicon.png" type="image/png" />
-    <link rel="icon" href="site/favicon.png" type="image/png" />
+    <link rel="favicon" href="favicon.png" type="image/png" />
+    <link rel="icon" href="favicon.png" type="image/png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&amp;display=swap" crossorigin="anonymous" />
-
-    <link rel="stylesheet" href="site/styles.css" type="text/css" />
-    <style id="colourmaker" type="text/css">/*==================*/</style>
-    <script async type="text/javascript" blocking="render">{
-      const style = document.head.querySelector('style#colourmaker');
-
-      // @todo: this
-
-      style.textContent = '';
-    }</script>
   </head>
   <body>
     <main class="loading" role="main">
@@ -64,42 +54,7 @@
           <span>This site requires JavaScript to function!</span>
         </noscript>
       </div>
-      <div id="app" class="hasjs" role="region" aria-label="Main application" data-tabid="models">
-        <header><a target="_top" href="./">Genshin Model Archive</a></header>
-        <div role="toolbar" aria-labelledby="tab selector" aria-orientation="horizontal">
-          <a role="radio" aria-checked="true"
-             data-tabid="models" class="activeT"
-             href="#models">Models</a>
-          <a role="radio" aria-checked="false"
-             data-tabid="bgs"
-             href="#bgs">Backgrounds</a>
-          <a role="radio" aria-checked="false"
-             data-tabid="stats"
-             href="#stats">Statistics</a>
-          <a role="radio" aria-checked="false"
-             data-tabid="credits"
-             href="#credits">Credits</a>
-        </div>
-        <div role="tablist" data-tabid="models">
-          <div role="tab" data-tabid="models"
-               aria-selected="true"
-               class="tab" aria-hidden="false">
-              </div>
-          <div role="tab" data-tabid="bgs"
-               aria-selected="false"
-               class="tab hiddenT" aria-hidden="true">
-              </div>
-          <div role="tab" data-tabid="stats"
-               aria-selected="false"
-               class="tab hiddenT" aria-hidden="true">
-              </div>
-          <div role="tab" data-tabid="credits"
-               aria-selected="false"
-               class="tab hiddenT" aria-hidden="true">
-              </div>
-        </div>
-      </div>
+      <div id="app" class="hasjs" role="region" aria-label="Main application" data-tabid="models"></div>
     </main>
-    <script defer type="text/javascript" src="site/script.js"></script>
   </body>
 </html>

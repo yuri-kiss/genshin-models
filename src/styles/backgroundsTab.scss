@@ -1,0 +1,16 @@
+div#app div.modelitem {
+  > div.backgrounditemversion {
+    border-right: none !important;
+
+    width: 60px;
+
+    mix-blend-mode: exclusion;
+  }
+  > img.backgroundimage {
+    width: 110%;
+    height: 62;
+
+    position: absolute;
+    z-index: 1;
+  }
+}

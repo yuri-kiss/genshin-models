@@ -1,0 +1,8 @@
+div#app *.hiddenT {
+  visibility: none;
+  display: none;
+}
+
+div#app > div[role="tablist"], div#app > div[role="tablist"] > div[role="tab"] {
+  width: auto;
+}

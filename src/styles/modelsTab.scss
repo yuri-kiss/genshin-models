@@ -1,0 +1,27 @@
+div#app div.modelitem {
+  > img.modelitemicon {
+    width: 280px;
+    height: 256px;
+    aspect-ratio: 16 / 9;
+
+    margin-left: 30px;
+
+    position: relative;
+    z-index: 2;
+  }
+  > div.modelitemname {
+    border-right: light-dark(var(--light-background-colour-lighter), var(--dark-background-colour)) 5px solid;
+
+    display: inline;
+    font-weight: bold;
+    font-size: x-large;
+
+    width: 120px;
+    align-content: center;
+    margin-left: 15px;
+    padding-right: 15px;
+
+    position: relative;
+    z-index: 2;
+  }
+}

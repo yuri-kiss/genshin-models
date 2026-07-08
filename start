@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+set -eEuo pipefail
+IFS=$'\n\t'
+
+npx webpack-dev-server

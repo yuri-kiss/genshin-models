@@ -1,0 +1,51 @@
+div#app div.modelitem {
+  width: 100%;
+  min-height: 265px;
+  height: 265px;
+  max-height: 265px;
+  overflow-x: clip;
+  overflow-y: clip;
+
+  display: flex;
+
+  position: relative;
+}
+
+div#app div.modelitem > div.modelitemcentral {
+  display: inline;
+  align-content: center;
+  margin-left: 15px;
+
+  width: fit-content;
+  margin-left: 15px;
+
+  color: inherit;
+
+  position: relative;
+  z-index: 2;
+}
+div#app div.modelitem > div.modelitemcentral > a.modelitemdownloadbutton, div#app div.modelitem > div.modelitemcentral > a.modelitempreviewbutton {
+  display: inline;
+  font-weight: 500;
+  font-size: large;
+
+  width: 100px;
+  height: fit-content;
+
+  padding: 5px;
+  background: #00ff00;
+  border: #ff0000 4px solid;
+  border-radius: 5px;
+
+  text-decoration: none !important;
+  color: inherit !important;
+}
+div#app div.modelitem > div.modelitemcentral > a.modelitemdownloadbutton {
+  margin-right: 15px;
+}
+
+div#app div.modelitem > div.modelitemcentral > select {
+  margin-left: 10px;
+}
+
+/*======================================================*/
