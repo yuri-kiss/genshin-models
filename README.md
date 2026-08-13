@@ -1,3 +1,6 @@
+>[!WARNING]
+> This project is current on hold.
+
 # genshin-models
 
 This is just a repo of the genshin models if the hosting site ever dies.
